@@ -12,7 +12,7 @@ This project showcases a collection of practical SQL queries for an employee man
 ```sql
 SELECT FirstName, LastName FROM Employee;
 
-### 2️⃣ Retrieve the first and last names of employees who work as 'Software Engineer'.
+2️⃣ Retrieve the first and last names of employees who work as 'Software Engineer'.
 
 SELECT FirstName, LastName 
 FROM Employee E
@@ -20,18 +20,14 @@ INNER JOIN JobTitle J ON E.JobTitleID = J.JobTitleID
 WHERE JobTitleName = 'Software Engineer';
 
 3️⃣ Retrieve first names and last names of last 7 hires.
-sql
-Copy
-Edit
+
 SELECT TOP 7 FirstName, LastName, HireDate 
 FROM Employee
 ORDER BY HireDate DESC;
 
 
 4️⃣ Get the count of employees in each job title.
-sql
-Copy
-Edit
+
 SELECT JobTitleName, COUNT(EmployeeID) AS NoOfEmployees 
 FROM Employee E
 INNER JOIN JobTitle J ON J.JobTitleID = E.JobTitleID
@@ -39,9 +35,7 @@ GROUP BY JobTitleName;
 
 
 5️⃣ Retrieve full name and personal info of employees in 'Engineering' department.
-sql
-Copy
-Edit
+
 SELECT CONCAT(FirstName, ' ', LastName) AS FullName, DateOfBirth, Gender, PhoneNumber, Email 
 FROM Employee E
 INNER JOIN Department D ON E.DepartmentID = D.DepartmentID
@@ -49,9 +43,7 @@ WHERE DepartmentName = 'Engineering';
 
 
 6️⃣ List job titles that have more than 3 employees.
-sql
-Copy
-Edit
+
 SELECT JobTitleName, COUNT(EmployeeID) AS NoOfEmployees 
 FROM Employee E
 INNER JOIN JobTitle J ON J.JobTitleID = E.JobTitleID
@@ -60,18 +52,15 @@ HAVING COUNT(EmployeeID) > 3;
 
 
 7️⃣ Retrieve all employee names along with their department names.
-sql
-Copy
-Edit
+
 SELECT CONCAT(FirstName, ' ', LastName) AS FullName, DepartmentName 
 FROM Employee E
 INNER JOIN Department D ON D.DepartmentID = E.DepartmentID;
 
 
+
 8️⃣ Retrieve first names of employees and the projects they are working on, along with their role.
-sql
-Copy
-Edit
+
 SELECT FirstName, ProjectName AS Project_Name, JobTitleName AS Project_Role 
 FROM Employee E
 INNER JOIN ProjectAllocation PA ON E.EmployeeID = PA.EmployeeID
@@ -80,9 +69,7 @@ INNER JOIN JobTitle J ON J.JobTitleID = E.JobTitleID;
 
 
 9️⃣ Get the count of employees in each department.
-sql
-Copy
-Edit
+
 SELECT DepartmentName, COUNT(EmployeeID) AS NoOfEmployees 
 FROM Employee E
 INNER JOIN Department D ON D.DepartmentID = E.DepartmentID
@@ -90,9 +77,7 @@ GROUP BY DepartmentName;
 
 
 🔟 List all departments with more than 5 employees.
-sql
-Copy
-Edit
+
 SELECT DepartmentName, COUNT(EmployeeID) AS NoOfEmployees 
 FROM Employee E
 INNER JOIN Department D ON D.DepartmentID = E.DepartmentID
@@ -101,9 +86,7 @@ HAVING COUNT(EmployeeID) > 5;
 
 
 1️⃣1️⃣ Retrieve the full names of employees and their managers.
-sql
-Copy
-Edit
+
 SELECT CONCAT(E.FirstName, ' ', E.LastName) AS EmployeeName,
        CONCAT(M.FirstName, ' ', M.LastName) AS ManagerName
 FROM Employee E
@@ -111,9 +94,7 @@ INNER JOIN Employee M ON E.ManagerID = M.EmployeeID;
 
 
 1️⃣2️⃣ Which manager is managing the most employees?
-sql
-Copy
-Edit
+
 SELECT CONCAT(M.FirstName, ' ', M.LastName) AS ManagerName,
        COUNT(E.EmployeeID) AS NumberOfEmployees
 FROM Employee E
@@ -122,9 +103,7 @@ GROUP BY CONCAT(M.FirstName, ' ', M.LastName);
 
 
 1️⃣3️⃣ Retrieve names of employees working on projects as 'Software Engineer', ordered by project start date.
-sql
-Copy
-Edit
+
 SELECT CONCAT(FirstName, ' ', LastName) AS Name, JobTitleName, StartDate 
 FROM Employee E
 INNER JOIN ProjectAllocation PA ON E.EmployeeID = PA.EmployeeID
@@ -135,9 +114,7 @@ ORDER BY StartDate;
 
 
 1️⃣4️⃣ Retrieve names of employees working on 'Project Delta'.
-sql
-Copy
-Edit
+
 SELECT CONCAT(FirstName, ' ', LastName) AS Name, ProjectName, StartDate 
 FROM Employee E
 INNER JOIN ProjectAllocation PA ON E.EmployeeID = PA.EmployeeID
@@ -147,9 +124,7 @@ ORDER BY StartDate;
 
 
 1️⃣5️⃣ Retrieve employee names, department name, and total salary.
-sql
-Copy
-Edit
+
 SELECT CONCAT(FirstName, ' ', LastName) AS FullName, DepartmentName, 
        (BaseSalary + Bonus) - Deductions AS Total_Salary
 FROM Employee E
@@ -159,9 +134,7 @@ ORDER BY Total_Salary DESC;
 
 
 1️⃣6️⃣ Create a function to find employees with a birthday in the given month and calculate their age.
-sql
-Copy
-Edit
+
 CREATE FUNCTION GetBirthday(@Month INT)
 RETURNS TABLE
 RETURN (
