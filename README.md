@@ -12,7 +12,7 @@ This project showcases a collection of practical SQL queries for an employee man
 ```sql
 SELECT FirstName, LastName FROM Employee;
 
-2️⃣ Retrieve the first and last names of employees who work as 'Software Engineer'.
+### 2️⃣ Retrieve the first and last names of employees who work as 'Software Engineer'.
 
 SELECT FirstName, LastName 
 FROM Employee E
